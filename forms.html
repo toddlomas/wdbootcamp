@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+</head>
+
+<body>
+    <h1>This is a form</h1>
+    <form action="/tacos">
+        <p><label for="username">Enter a Username:</label>
+            <input id="username" type="text" placeholder="Username" name="username" minlength="5" maxlength="10"
+                required>
+        </p>
+        <p><label for="password">Enter a Password:</label>
+            <input id="password" type="password" placeholder="Password" name="password" minlength="5" maxlength="10"
+                required>
+        </p>
+        <p><label for="color">Chose a Color:</label>
+            <input id="color" type="color" name="color">
+        </p>
+        <button>Submit</button>
+    </form>
+    <hr>
+    <h1>
+        Hijacking Searches
+        <h3>Search Reddit</h3>
+    </h1>
+    <form action="https://www.reddit.com/search">
+        <input type="text" name="q">
+        <button>Search Reddit</button>
+    </form>
+    <h3>Search Google</h3>
+    <form action="https://www.google.co.uk/search"><input type="text" name="q"><button>Search Google</button></input>
+    </form>
+
+    <hr>
+    <h1>More Inputs!</h1>
+    <form action="/birds">
+        <label for="agree">I agree to the terms of service</label>
+        <input type="checkbox" name="agree_tos" id="agree">
+        <p>
+            <label for="XS">XS:</label>
+            <input type="radio" name="size" id="XS" value="XS">
+            <label for="S">S:</label>
+            <input type="radio" name="size" id="S" value="S">
+            <label for="M">M:</label>
+            <input type="radio" name="size" id="M" value="M">
+        </p>
+        <p>
+            <label for="colours">Please select a colour </label>
+            <select name="colours" id="colours">
+                <option value="">Select</option>
+                <option value="red">red</option>
+                <option value="blue">blue</option>
+                <option value="green">green</option>
+                <option value="yellow">yellow</option>
+                <option value="pink">pink</option>
+            </select>
+        <p><label for="cheese"> Cheese</label>
+            <input type="range" id="cheese" min="0" max="100" step="10" value="75" name="cheese_level">
+        </p>
+        </p>
+        <p>
+            <label for="requests">Any Requests?</label>
+            <textarea name="request_box" id="requests" cols="10" rows="2" placeholder="Write here"></textarea>
+        </p>
+        <button>Submit</button>
+
+    </form>
+    </hr>
+</body>
+
+</html>
