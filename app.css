@@ -26,3 +26,8 @@ p {
 body {
     background-color: bisque;
 }
+
+input[type="radio"]:checked {
+    border: none;
+    outline: 2px solid deeppink;
+}
