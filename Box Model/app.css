@@ -1,0 +1,54 @@
+div {
+    width: 100px;
+    border-radius: 5%;
+    /* padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px; */
+    padding: 10px;
+    padding-bottom: 50px;
+    animation: slide-up 0.5s;
+    margin: 50px;
+}
+
+#one {
+    background-color: aquamarine;
+    border-width: 2.5px;
+    border-color: black;
+    border-style: solid;
+}
+
+#two {
+    background-color: coral;
+    border-width: 2.5px;
+    border-color: black;
+    border-style: dashed;
+    border: 2.5px solid black;
+    border-right-style: dashed;
+}
+
+#three {
+    background-color: #2a9d8f;
+    border-width: 2.5px;
+    border-color: black;
+    border-style: solid
+}
+
+button {
+    background-color: #219ebc;
+    color: white;
+    font-family: arial;
+    padding: 5px 10px;
+    border-radius: 10%;
+    border: 2.5px blue solid;
+    animation: slide-up 1.3s;
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateX(-5rem);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
