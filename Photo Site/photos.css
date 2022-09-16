@@ -1,4 +1,4 @@
-img {
+img#id {
     width: 30%;
     margin: calc(10%/6);
     transition: border-radius 1.5s, transform 0.5s;
