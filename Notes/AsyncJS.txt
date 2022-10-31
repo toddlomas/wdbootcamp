@@ -1,0 +1,48 @@
+ASYNCHRONOUS JAVASCRIPT
+
+
+---------------------------
+
+Callstack
+The callstack is the mechanism that JS uses to keep track of order of where it is in a bunch of function calls 
+
+const isRightTriangle = (a,b,c) => {
+    return square(a) + square(b) === square(c);
+};
+
+isRightTriangle(3,4,5)
+
+In this example of the callstack, isRightTriangle is called first, but doesnt return something straight away
+it returns the result of square a,b,c once those function calls have come back.
+
+Callstack:
+
+
+multiply(3,3)
+square(3)
+isRightTriangle(3,4,5) -> DOESNT HAVE AN ANSWER YET, SO STAYS ON THE STACK WHILE TOP TWO DISAPPEAR
+
+multiply(4,4)
+square(4)
+isRightTriangle(3,4,5) -> DOESNT HAVE AN ANSWER YET, SO STAYS ON THE STACK WHILE TOP TWO DISAPPEAR
+
+multiply(5,5)
+square(5)
+isRightTriangle(3,4,5) -> HAS THE ANSWER IT IS COMPLETE.
+
+
+Javascript is SINGLE THREADED.
+
+A single JS thread is running at most ONE LINE of code at a time.
+Under the hood: The browser itself can do things that JS cant
+- Browsers come with web api's that are able to handle things in the background
+(like making requests or setTimeout)
+- The JS call stack recognises these Web API functions and passes them onto the browser
+
+
+A Promise is an object representing the eventual completion or failure of an async operation
+"An eventual guarantee of a value"
+
+"resolved" : success
+"pending" : pending
+"rejected" : failure
