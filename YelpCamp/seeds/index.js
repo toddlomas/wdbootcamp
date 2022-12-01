@@ -14,22 +14,22 @@ db.once("open", () => {
 
 const sample = (array) => array[Math.floor(Math.random() * array.length)];
 
-// PLS FIX
-async function seedImg() {
-  try {
-    const resp = await axios.get("https://api.unsplash.com/photos/random", {
-      params: {
-        client_id: "GIiugj8HTHhAi2eMO8uLnOj1qjwQ85N_Cf1oMyPzgwk",
-        collections: 1114848,
-        count: 1,
-      },
-    });
-    console.log(resp.json());
-    return resp.json;
-  } catch (err) {
-    console.error(err);
-  }
-}
+// // PLS FIX
+// async function seedImg() {
+//   try {
+//     const resp = await axios.get("https://api.unsplash.com/photos/random", {
+//       params: {
+//         client_id: "GIiugj8HTHhAi2eMO8uLnOj1qjwQ85N_Cf1oMyPzgwk",
+//         collections: 1114848,
+//         count: 1,
+//       },
+//     });
+//     console.log(resp.json());
+//     return resp.json;
+//   } catch (err) {
+//     console.error(err);
+//   }
+// }
 
 const seedDb = async () => {
   await Campground.deleteMany({});
