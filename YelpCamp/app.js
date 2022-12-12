@@ -15,8 +15,12 @@ const campgroundRoutes = require("./routes/campgrounds");
 const reviewRoutes = require("./routes/reviews");
 const userRoutes = require("./routes/users");
 const User = require("./models/user");
+const mongoSanitize = require("express-mongo-sanitize");
+const MongoStore = require("connect-mongo");
+//const dbUrl = process.env.DB_URL;
+const dbUrl = "mongodb://localhost:27017/yelp-camp";
 
-mongoose.connect("mongodb://localhost:27017/yelp-camp");
+mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -34,7 +38,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  touchAfter: 24 * 60 * 60,
+  crypto: {
+    secret: "squirrel",
+  },
+});
+
 const sessionConfig = {
+  store,
   secret: "abettersecret",
   resave: false,
   saveUninitialized: true,
@@ -44,6 +57,11 @@ const sessionConfig = {
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
 };
+
+store.on("error", function (e) {
+  console.log("session error", e);
+});
+
 app.use(session(sessionConfig));
 app.use(flash());
 
@@ -73,6 +91,10 @@ app.get("/fakeUser", async (req, res) => {
 app.use("/", userRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/reviews", reviewRoutes);
+
+app.get("/", (req, res) => {
+  res.render("home");
+});
 
 app.all("*", (req, res, next) => {
   next(new ExpressError("Page Not Found", 404));

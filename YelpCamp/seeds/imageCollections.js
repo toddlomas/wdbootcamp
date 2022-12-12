@@ -1,59 +1,21 @@
-const mongoose = require("mongoose");
-const axios = require("axios");
-const uuid = require("uuid");
-const cities = require("./cities");
-const { places, descriptors } = require("./seedhelpers");
-const Campground = require("../models/campground");
-const { json } = require("express");
-// const listOfUrls = require("./imageCollections");
+// const getRandomImage = async function () {
+//   let endpoint =
+//     "https://api.unsplash.com/photos/random?client_id=GIiugj8HTHhAi2eMO8uLnOj1qjwQ85N_Cf1oMyPzgwk&collections=1114848&count=100";
 
-mongoose.connect("mongodb://localhost:27017/yelp-camp");
+//   fetch(endpoint)
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (jsonData) {
+//       let imageURL = jsonData.urls.regular;
+//       return imageURL;
+//     });
+//   return imageURL;
+// };
 
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-  console.log("Database connected");
-});
+// const collection = getRandomImage();
 
-const sample = (array) => array[Math.floor(Math.random() * array.length)];
-const randomIntFromInterval = function (min, max) {
-  // min and max included
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
-const seedDb = async () => {
-  await Campground.deleteMany({});
-  for (let i = 0; i < 60; i++) {
-    const random1000 = Math.floor(Math.random() * 1000);
-    const price = Math.floor(Math.random() * 20) + 10;
-    const camp = new Campground({
-      author: "6387403e7cc9c3acd8a9cac7",
-      location: `${cities[random1000].city}, ${cities[random1000].state}`,
-      title: `${sample(descriptors)} ${sample(places)}`,
-      images: [
-        {
-          url: listOfUrls[i],
-          filename: `YelpCamp/${uuid.v4()}`,
-        },
-      ],
-      description:
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam earum rem modi, vero dolores accusantium officiis, odit impedit ab quod sint ex velit aliquid asperiores ad sit natus nesciunt?",
-      price,
-      geometry: {
-        type: "Point",
-        coordinates: [
-          cities[random1000].longitude,
-          cities[random1000].latitude,
-        ],
-      },
-    });
-    await camp.save();
-  }
-};
-
-seedDb().then(() => mongoose.connection.close());
-
-const listOfUrls = [
+exports.listOfUrls = [
   "https://images.unsplash.com/photo-1471474382320-7d31e2cc170e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzODUzNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzA4NDk3NDI&ixlib=rb-4.0.3&q=80&w=1080",
   "https://images.unsplash.com/photo-1489619547086-641e1c87c3ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzODUzNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzA4NDk3NDI&ixlib=rb-4.0.3&q=80&w=1080",
   "https://images.unsplash.com/photo-1488667499475-42a530fab02b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzODUzNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzA4NDk3NDI&ixlib=rb-4.0.3&q=80&w=1080",
